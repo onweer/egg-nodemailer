@@ -1,5 +1,5 @@
 {
-  "name": "egg-nodemailer",
+  "name": "egg-nodemailer-extra",
   "version": "1.0.0",
   "description": "NodeMailer plugin for egg",
   "eggPlugin": {
@@ -8,9 +8,15 @@
   "keywords": [
     "egg",
     "eggPlugin",
-    "egg-plugin"
+    "egg-plugin",
+    "nodemailer",
+    "email",
+    "mail",
+    "nodemail"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "nodemailer": "^4.4.1"
+  },
   "devDependencies": {
     "autod": "^3.0.0",
     "autod-egg": "^1.0.0",
@@ -35,8 +41,6 @@
     "autod": "autod"
   },
   "files": [
-    "app.js",
-    "agent.js",
     "config"
   ],
   "ci": {
@@ -44,12 +48,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-nodemailer.git"
+    "url": "git+https://github.com/onweer/egg-nodemailer.git"
   },
   "bugs": {
-    "url": "https://github.com/eggjs/egg/issues"
+    "url": "https://github.com/onweer/egg-nodemailer/issues"
   },
-  "homepage": "https://github.com/eggjs/egg-nodemailer#readme",
+  "homepage": "https://github.com/onweer/egg-nodemailer#readme",
   "author": "onweer",
   "license": "MIT"
 }
