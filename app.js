@@ -19,14 +19,6 @@ function createNodemailer(config, app) {
     throw new Error('configure must require a auth');
   }
   // 创建实例
-  const client = new Mysql(config);
-
-  // 做启动应用前的检查
-  app.beforeStart(async function startMysql() {
-    const rows = await client.query('select now() as currentTime;');
-    const index = count++;
-    app.coreLogger.info(`[egg-mysql] instance[${index}] status OK, rds currentTime: ${rows[0].currentTime}`);
-  });
-
-  return client;
+  const transporter = nodemailer.createTransport(config);
+  return transporter;
 }
