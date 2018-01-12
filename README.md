@@ -36,7 +36,7 @@ $ npm i egg-nodemailer --save
 // {app_root}/config/plugin.js
 exports.nodemailer = {
   enable: true,
-  package: 'egg-nodemailer',
+  package: 'egg-nodemailer-extra',
 };
 ```
 
@@ -52,7 +52,63 @@ see [config/config.default.js](config/config.default.js) for more detail.
 
 ## Example
 
-<!-- example here -->
+```
+// app/config/config.default.js
+module.exports = appInfo => {
+  const config = exports = {};
+
+  config.nodemailer = {
+    host: 'smtp.exmail.qq.com', // your email smtp server
+    port: 465,
+    secure: true, // true for 465, false for other ports
+    auth: {
+      user: 'example@qq.com', // generated ethereal user
+      pass: 'password', // generated ethereal password
+    },
+  };
+  return config;
+};
+
+
+
+// app.js
+module.exports = app => {
+  app.transporter = app.nodemailer.create(app.config.nodemailer, app);
+};
+
+
+// controller/post.js
+const Controller = require('egg').Controller;
+class PostController extends Controller {
+  async create() {
+    const { app } = this;
+    let mailOptions = {
+      from: 'example@qq.com', // sender address
+      to: 'youremail@qq.com', // list of receivers
+      subject: 'Hello ✔', // Subject line
+      text: 'Hello world?', // plain text body
+      html: '<b>Hello world?</b>' // html body
+    };
+    
+   app.transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return console.log(error);
+      }
+      console.log('Message sent: %s', info);
+      // Preview only available when sending through an Ethereal account
+      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+      ctx.body = info;
+      ctx.status = 200;
+    });
+    
+   
+  }
+}
+module.exports = PostController;
+
+
+```
 
 ## Questions & Suggestions
 

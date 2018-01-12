@@ -1,6 +1,6 @@
 {
   "name": "egg-nodemailer-extra",
-  "version": "1.1.4",
+  "version": "1.2.4",
   "description": "NodeMailer plugin for egg",
   "eggPlugin": {
     "name": "nodemailer"
@@ -42,7 +42,8 @@
   },
   "files": [
     "config",
-    "app.js"
+    "app.js",
+    "lib"
   ],
   "ci": {
     "version": "8, 9"
